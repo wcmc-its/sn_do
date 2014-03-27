@@ -1,0 +1,12 @@
+instance_name: demo017
+username: admin
+password: admin
+assign_group_id: d625dccec0a8016700a222a0f7900d06
+assign_group_name: Software
+
+#Notification configuration
+#Please set the values for the notification functionality
+smtpserver: smtp.med.cornell.edu #this is an smtp server in your enviroment where emails can be sent
+recipients: recipients@ymed.cornell.edu  #the indended recipients seperated by a comma
+fromaddress: sn_do@med.cornell.edu #This is the from address you would like your message to come from
+
