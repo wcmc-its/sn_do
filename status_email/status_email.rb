@@ -1,9 +1,9 @@
 #gets sample data from service now demo enviroment
-require_relative 'sn_do'
+require 'sn_do'
 require 'yaml'
 
 #Loading YAML variables
-config = YAML.load_file("sn_do_config.yml.expl")
+config = YAML.load_file("sn_do_config.yml")
 instance_name = config["instance_name"]
 username = config["username"]
 password = config["password"]
@@ -25,27 +25,22 @@ incident_list = SN_DO::INC.parse_xml(httpresult)
 
 #basic count of total incidents
 total_incidents = incident_list.count
-puts "Total incidents for #{assignment_group} are #{total_incidents}"
 
 #how to filter out an incident_state from our above array
 #SN_DO::INC.filter(array, type, query_param, query_value)
 filtered_incidents = SN_DO::INC.filter(incident_list, 'out', 'incident_state', '1')
-puts "Incidents initialized #{filtered_incidents.count}"
 
 #how to get a count of incidents by datediff where the value opened is less then 1
 #SN_DO::INC.count_datediff(array, query_param, operator, diff)
 openedlast_24 = SN_DO::INC.count_datediff(incident_list,'opened','less',1)
-puts "New incidents last 24hrs #{openedlast_24}"
 
 #how to get a count of incidents by datediff and the value opened is more then 7
 #SN_DO::INC.count_datediff(array, query_param, operator, diff)
 olderthen7days = SN_DO::INC.count_datediff(incident_list,'opened','more',7)
-puts "Total incidents older then 7 days #{olderthen7days}"
 
 #how to get a count of incidents by datediff and the value updated is more then 7
 #SN_DO::INC.count_datediff(array, query_param, operator, diff)
 notupdated7days = SN_DO::INC.count_datediff(incident_list,'updated','more',7)
-puts "Total incidents not updated in 7 days #{notupdated7days}"
 
 #how to get the details of incidents by datediff and the value updated is more then 7
 #SN_DO::INC.details_datediff(array, query_param, operator, diff)
