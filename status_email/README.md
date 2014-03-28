@@ -5,7 +5,7 @@ This uses sn_do to gather data from an ServiceNow instance, generate some statis
 
 * `status_email.rb` - This calls `sn_do` and does all the heavy lifting to gather the data and build the email
 * `send_alert_mail.rb` - This uses `net/smtp` to send an email crafted by `status_email.rb` 
-* sn_do_config.expl.yml - This is the YAML config file for `status_email`which defines which SN instance to contact and who should be recieving the email
+* `sn_do_config.expl.yml` - This is the YAML config file for `status_email`which defines which SN instance to contact and who should be recieving the email
 
 ## install
 
@@ -21,7 +21,7 @@ require 'net/smtp'
 
 ### brief example 
 for using status_email and connecting to ServiceNow and generating a report you will need to define the contents of `sn_do_config.yml`
-``` yaml
+``` ruby
 instance_name: demo017
 username: admin
 password: admin
